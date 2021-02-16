@@ -14,7 +14,7 @@ class TableViewCell: UITableViewCell {
     @IBOutlet weak var data: UILabel!
     @IBOutlet weak var img: UIImageView!
     override func awakeFromNib() {
-        super.awakeFromNib()
+        super.awakeFromNib()     
         // Initialization code
     }
 
