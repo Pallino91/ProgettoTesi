@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		B14AF61025DB2F7A00CF1FF8 /* ViewController2.swift in Sources */ = {isa = PBXBuildFile; fileRef = B14AF60F25DB2F7A00CF1FF8 /* ViewController2.swift */; };
 		B14AF61225DB417200CF1FF8 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = B14AF61125DB417200CF1FF8 /* Location.swift */; };
+		B14AF65425E1657100CF1FF8 /* JSONLanding.swift in Sources */ = {isa = PBXBuildFile; fileRef = B14AF65325E1657100CF1FF8 /* JSONLanding.swift */; };
+		B14AF65625E165A100CF1FF8 /* JSONHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = B14AF65525E165A000CF1FF8 /* JSONHistory.swift */; };
+		B14AF65825E165BB00CF1FF8 /* JSONDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = B14AF65725E165BB00CF1FF8 /* JSONDetail.swift */; };
 		B169F18B25DAB83100934163 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B169F18A25DAB83100934163 /* AppDelegate.swift */; };
 		B169F18D25DAB83100934163 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B169F18C25DAB83100934163 /* SceneDelegate.swift */; };
 		B169F18F25DAB83100934163 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B169F18E25DAB83100934163 /* ViewController.swift */; };
@@ -23,6 +26,9 @@
 /* Begin PBXFileReference section */
 		B14AF60F25DB2F7A00CF1FF8 /* ViewController2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController2.swift; sourceTree = "<group>"; };
 		B14AF61125DB417200CF1FF8 /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
+		B14AF65325E1657100CF1FF8 /* JSONLanding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONLanding.swift; sourceTree = "<group>"; };
+		B14AF65525E165A000CF1FF8 /* JSONHistory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONHistory.swift; sourceTree = "<group>"; };
+		B14AF65725E165BB00CF1FF8 /* JSONDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONDetail.swift; sourceTree = "<group>"; };
 		B169F18725DAB83100934163 /* ProgettoTesi.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ProgettoTesi.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B169F18A25DAB83100934163 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B169F18C25DAB83100934163 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -78,6 +84,9 @@
 				B169F1AE25DB120400934163 /* TableViewCell.swift */,
 				B14AF60F25DB2F7A00CF1FF8 /* ViewController2.swift */,
 				B14AF61125DB417200CF1FF8 /* Location.swift */,
+				B14AF65325E1657100CF1FF8 /* JSONLanding.swift */,
+				B14AF65525E165A000CF1FF8 /* JSONHistory.swift */,
+				B14AF65725E165BB00CF1FF8 /* JSONDetail.swift */,
 			);
 			path = ProgettoTesi;
 			sourceTree = "<group>";
@@ -154,12 +163,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				B14AF61025DB2F7A00CF1FF8 /* ViewController2.swift in Sources */,
+				B14AF65825E165BB00CF1FF8 /* JSONDetail.swift in Sources */,
 				B169F1A725DAEC1B00934163 /* ModelUtente.swift in Sources */,
+				B14AF65625E165A100CF1FF8 /* JSONHistory.swift in Sources */,
 				B14AF61225DB417200CF1FF8 /* Location.swift in Sources */,
 				B169F18F25DAB83100934163 /* ViewController.swift in Sources */,
 				B169F18B25DAB83100934163 /* AppDelegate.swift in Sources */,
 				B169F1AD25DB0F2500934163 /* TableViewController2.swift in Sources */,
 				B169F1AF25DB120400934163 /* TableViewCell.swift in Sources */,
+				B14AF65425E1657100CF1FF8 /* JSONLanding.swift in Sources */,
 				B169F18D25DAB83100934163 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
