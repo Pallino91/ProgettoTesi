@@ -15,17 +15,26 @@ class ViewController2: UIViewController {
     @IBOutlet weak var dataDettaglio: UILabel!
     @IBOutlet weak var locationDettaglio: UILabel!
     @IBOutlet weak var imgUtente: UIImageView!
+    @IBOutlet weak var media: UILabel!
     
-    var utenti : UtentiCovid?
+    var utenti : Utente?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        avvenimentoDettaglio.text = "\(utenti!.numeroPersone) People Without Mask"
-        imgDettagli.image = utenti?.img
-        dataDettaglio.text = utenti?.data
-        locationDettaglio.text = utenti?.location?.rawValue
-        imgUtente.image = utenti?.imgUtente
+        avvenimentoDettaglio.text = "\(utenti!.nPeople) People Without Mask"
+        imgDettagli.image = utenti?.imgHystory
+        locationDettaglio.text = utenti?.location
+        let data = try? Data(contentsOf: URL(string: "https://td4.andromedaesp.it\(utenti!.urlMedia)")!)
+        imgUtente.image = UIImage(data: data!)
+        media.text = utenti!.media
+        let date = NSDate(timeIntervalSince1970: TimeInterval(utenti!.timestamp))
+        let dateFormatter = DateFormatter()
+        dateFormatter.locale = NSLocale.current
+        dateFormatter.dateFormat = "MM-dd-y HH:mm:ss"
+        dataDettaglio.text = dateFormatter.string(from: date as Date)
+        DispatchQueue.main.async{
+            self.viewDidLoad()
+        }
         // Do any additional setup after loading the view.
     }
     

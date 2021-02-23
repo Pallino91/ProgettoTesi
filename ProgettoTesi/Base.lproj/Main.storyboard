@@ -64,7 +64,7 @@
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ctP-ro-Nil">
-                                <rect key="frame" x="260" y="75" width="64" height="29"/>
+                                <rect key="frame" x="259" y="75" width="65" height="40"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="21"/>
                                 <color key="textColor" red="0.92143100499999997" green="0.92145264149999995" blue="0.92144101860000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
@@ -83,8 +83,8 @@
                             <constraint firstItem="SIC-Ip-vX1" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="177" id="CSf-Ld-VBM"/>
                             <constraint firstItem="Rkb-nf-iB0" firstAttribute="top" secondItem="iXh-nY-BNu" secondAttribute="bottom" constant="73.670000000000002" id="JpA-on-45A"/>
                             <constraint firstItem="SIC-Ip-vX1" firstAttribute="top" secondItem="Rkb-nf-iB0" secondAttribute="bottom" constant="26" id="NPW-tn-hKE"/>
-                            <constraint firstItem="Uni-a9-22L" firstAttribute="top" secondItem="ctP-ro-Nil" secondAttribute="bottom" constant="43" id="Pt0-1d-CPK"/>
-                            <constraint firstItem="ctP-ro-Nil" firstAttribute="leading" secondItem="Q62-W7-wTb" secondAttribute="trailing" constant="8" id="Srw-vM-Mml"/>
+                            <constraint firstItem="Uni-a9-22L" firstAttribute="top" secondItem="ctP-ro-Nil" secondAttribute="bottom" constant="32" id="Pt0-1d-CPK"/>
+                            <constraint firstItem="ctP-ro-Nil" firstAttribute="leading" secondItem="Q62-W7-wTb" secondAttribute="trailing" constant="7" id="Srw-vM-Mml"/>
                             <constraint firstItem="Q62-W7-wTb" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="31" id="TbU-Q5-Zmh"/>
                             <constraint firstItem="iXh-nY-BNu" firstAttribute="top" secondItem="h4V-c4-sSS" secondAttribute="bottom" constant="15" id="cwu-SR-xOg"/>
                             <constraint firstItem="Rkb-nf-iB0" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="119" id="gpP-SO-NYi"/>
@@ -145,12 +145,12 @@
                             <viewLayoutGuide key="safeArea" id="KMp-bc-QKs"/>
                         </view>
                         <view key="tableFooterView" contentMode="scaleToFill" id="bb2-7n-l9d">
-                            <rect key="frame" x="0.0" y="355" width="414" height="44"/>
+                            <rect key="frame" x="0.0" y="355" width="414" height="1"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         </view>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="Cella" rowHeight="96" id="3CI-hN-HND" customClass="TableViewCell" customModule="ProgettoTesi" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleAspectFit" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="Cella" rowHeight="96" id="3CI-hN-HND" customClass="TableViewCell" customModule="ProgettoTesi" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="231" width="414" height="96"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="3CI-hN-HND" id="Y5s-An-MwP">
@@ -251,8 +251,8 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Location" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sFe-AG-Res">
-                                <rect key="frame" x="263" y="430" width="63.666666666666686" height="32"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="sFe-AG-Res">
+                                <rect key="frame" x="263" y="430" width="102" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" weight="thin" pointSize="17"/>
                                 <nil key="textColor"/>
@@ -272,7 +272,7 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4NT-2U-7ch">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4NT-2U-7ch">
                                 <rect key="frame" x="27" y="545" width="367" height="158"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
@@ -289,6 +289,7 @@
                         <outlet property="imgDettagli" destination="qvN-9g-Ehs" id="XfS-mB-mbi"/>
                         <outlet property="imgUtente" destination="4NT-2U-7ch" id="uOg-nM-Qd1"/>
                         <outlet property="locationDettaglio" destination="sFe-AG-Res" id="SYC-S9-cdl"/>
+                        <outlet property="media" destination="dJU-1u-kya" id="if2-fd-AdO"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8ET-jY-SHc" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

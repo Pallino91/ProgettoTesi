@@ -23,5 +23,24 @@ class TableViewCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
+    
+    
+    override func prepareForReuse() {
+        fineAnimazione()
+    }
+    
+    func animaCella(){
+        UIView.beginAnimations("", context: nil)
+        UIView.setAnimationDuration(0.7)
+        layer.transform = CATransform3DIdentity
+        alpha = 1
+        UIView.commitAnimations()
+    }
+    
+    func fineAnimazione(){
+        alpha = 0
+        layer.transform = CATransform3DMakeRotation((90 * .pi)/180, 0, 0.3, 0.2)
+        layer.anchorPoint = CGPoint(x: 0, y: 0)
+    }
 
 }

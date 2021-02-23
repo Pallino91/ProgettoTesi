@@ -10,56 +10,19 @@ import UIKit
 
 class TableViewController2: UITableViewController {
     
-    var utenti : [UtentiCovid] = [UtentiCovid]()
+    var utenti = [Utente]()
+    var activityIndicator = UIActivityIndicatorView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let dateNow = Date()
-        let calendar = Calendar.current
-        let components = calendar.dateComponents([.year, .month, .day], from: dateNow)
-        for x in 1...10{
-            //let data = "11-04-1991"
-            let tmp = Int.random(in: 1..<7)
-            let date = String(components.day!) + " " + String(components.year!) + " " + String(components.day! + x)
-            utenti.append(UtentiCovid(avvenimento: String(x), data: date, numeroPersone: String(Int.random(in: 1...3))))
-            switch utenti[x-1].numeroPersone {
-            case "1":
-                utenti[x-1].img = UIImage(systemName: "person.fill")!
-                utenti[x-1].imgUtente = UIImage(named: "mascherina")
-            case "2":
-                utenti[x-1].img = UIImage(systemName: "person.2.fill")!
-                utenti[x-1].imgUtente = UIImage(named: "mascherina2")
-            case "3":
-                utenti[x-1].img = UIImage(systemName: "person.3.fill")!
-                utenti[x-1].imgUtente = UIImage(named: "mascherina3")
-            default:
-                break
-            }
-            
-            switch tmp {
-            case 1:
-                utenti[x-1].location = Location(rawValue: "Roma")
-            case 2:
-                utenti[x-1].location = Location(rawValue: "Torino")
-            case 3:
-                utenti[x-1].location = Location(rawValue: "Napoli")
-            case 4:
-                utenti[x-1].location = Location(rawValue: "Catanzaro")
-            case 5:
-                utenti[x-1].location = Location(rawValue: "Firenze")
-            case 6:
-                utenti[x-1].location = Location(rawValue: "Palermo")
-            case 7:
-                utenti[x-1].location = Location(rawValue: "Milano")
-            default:
-                break
-            }
-        }
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-        
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
+        self.activityIndicator.frame.size.width = 100
+        self.activityIndicator.frame.size.height = 100
+        self.activityIndicator.color = UIColor.red
+        self.activityIndicator.center = self.view.center
+        self.activityIndicator.hidesWhenStopped = true
+        view.addSubview(self.activityIndicator)
+        self.activityIndicator.startAnimating()
+        callAPI()
     }
     
     // MARK: - Table view data source
@@ -77,13 +40,14 @@ class TableViewController2: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cella", for: indexPath) as! TableViewCell
-        cell.avvenimentoText.text = utenti[indexPath.row].avvenimento
-        cell.data.text = utenti[indexPath.row].data
-        cell.img.image = utenti[indexPath.row].img
-        //print("---------------")
-        //print(cell.frame.size.height)
-        // Configure the cell...
-        
+        cell.avvenimentoText.text = String(utenti[indexPath.row].nPeople) + "People Without Mask"
+        let date = NSDate(timeIntervalSince1970: TimeInterval(utenti[indexPath.row].timestamp))
+        let dateFormatter = DateFormatter()
+        dateFormatter.timeZone = TimeZone(abbreviation: "GMT") //Set timezone that you want
+        dateFormatter.locale = NSLocale.current
+        dateFormatter.dateFormat = "MM-dd-y HH:mm:ss"
+        cell.data.text = dateFormatter.string(from: date as Date)
+        cell.img.image = utenti[indexPath.row].imgHystory
         return cell
     }
     
@@ -131,13 +95,148 @@ class TableViewController2: UITableViewController {
         guard segue.identifier != nil else{
             return
         }
+        
         let riga = sender as? Int
-        (segue.destination as! ViewController2).utenti = utenti[riga!]
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+        //(segue.destination as! ViewController2).utenti = utenti[riga!]
+        let urll = URL(string: "https://td4.andromedaesp.it/api/demo/detail")
+        let x = ["timestamp": utenti[riga!].timestamp, "type": utenti[riga!].type] as [String : Any]
+        let jsonData = try! JSONSerialization.data(withJSONObject: x, options: [])
+        var request = URLRequest(url: urll!)
+        request.httpMethod = "POST"
+        request.setValue("application/json", forHTTPHeaderField: "Accept")
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.httpBody = jsonData
+        let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
+            guard let dataResponse = data,
+                error == nil else {
+                    print(error?.localizedDescription ?? "Response Error")
+                    return }
+            if let c = response as? HTTPURLResponse, c.statusCode != 200 {
+                // check for http errors
+                print("statusCode should be 200, but is \(c.statusCode)")
+            }
+            do{
+                let land = try JSONDecoder().decode([Detail].self, from: data!)
+                self.utenti[riga!].size = land[0].size
+                self.utenti[riga!].media = land[0].media
+                self.utenti[riga!].location = land[0].location
+                self.utenti[riga!].description = land[0].description
+                self.utenti[riga!].urlMedia = land[0].url!
+                
+                
+                //here dataResponse received from a network request
+                //let jsonResponse = try JSONSerialization.jsonObject(with:
+                //  dataResponse, options: [])
+            } catch let parsingError {
+                print("Error", parsingError)
+            }
+        }.resume()
+        (segue.destination as! ViewController2).utenti = self.utenti[riga!]
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         performSegue(withIdentifier: "DettaglioUtente", sender: indexPath.row)
     }
+    
+    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 94
+    }
+    
+    
+    
+    override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        guard let cell = cell as? TableViewCell else{
+            return
+        }
+        cell.animaCella()
+    }
+    
+    
+    func callAPI(){
+        let url = URL(string: "https://td4.andromedaesp.it/api/demo/history")
+        let y = ["batchIndex": 1, "batchSize": 10, "reverseOrder": true, "time": 1593705153000, "type": "Mask"] as [String : Any]
+        let jsonDataa = try! JSONSerialization.data(withJSONObject: y, options: [])
+        var requestt = URLRequest(url: url!)
+        requestt.httpMethod = "POST"
+        requestt.setValue("application/json", forHTTPHeaderField: "Accept")
+        requestt.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        requestt.httpBody = jsonDataa
+        
+        let taskk = URLSession.shared.dataTask(with: requestt) { (data, response, error) in
+            guard let dataResponse = data,
+                error == nil else {
+                    print(error?.localizedDescription ?? "Response Error")
+                    return }
+            if let c = response as? HTTPURLResponse, c.statusCode != 200 {
+                // check for http errors
+                print("statusCode should be 200, but is \(c.statusCode)")
+                print("response = \(response)")
+            }
+            do{
+                //here dataResponse received from a network request
+                let land = try JSONDecoder().decode([UtentiHystory].self, from: data!)
+                for x in 0..<land.count{
+                    self.utenti.append(Utente(timestamp: land[x].timestamp, type: land[x].type, nPeople: land[x].value.nPeople))
+                    switch land[x].value.nPeople {
+                    case 1:
+                        self.utenti[x].imgHystory = UIImage(systemName: "person.fill")
+                    case 2:
+                        self.utenti[x].imgHystory = UIImage(systemName: "person.2.fill")
+                    case 3...10:
+                        self.utenti[x].imgHystory = UIImage(systemName: "person.3.fill")
+                    default:
+                        break
+                    }
+                }
+                DispatchQueue.main.async {
+                    self.activityIndicator.stopAnimating()
+                    self.tableView.reloadData()
+                }
+            } catch let parsingError {
+                print("Error", parsingError)
+            }
+        }.resume()
+    }
+    
+    //    func Post(completionHandler: @escaping ([UtentiHystory]) -> Void){
+    //        let url = URL(string: "https://td4.andromedaesp.it/api/demo/history")
+    //        let y = ["batchIndex": 1, "batchSize": 5, "reverseOrder": true, "time": 1593705153000, "type": "Mask"] as [String : Any]
+    //        let jsonDataa = try! JSONSerialization.data(withJSONObject: y, options: [])
+    //        var requestt = URLRequest(url: url!)
+    //        requestt.httpMethod = "POST"
+    //        //request.httpBody = postString.data(using: String.Encoding.utf8);
+    //        //
+    //
+    //        requestt.setValue("application/json", forHTTPHeaderField: "Accept")
+    //        requestt.setValue("application/json", forHTTPHeaderField: "Content-Type")
+    //        requestt.httpBody = jsonDataa
+    //        //
+    //
+    //        let taskk = URLSession.shared.dataTask(with: requestt) {(data, response, error) in
+    //            guard let dataResponse = data,
+    //                error == nil else {
+    //                    print(error?.localizedDescription ?? "Response Error")
+    //                    return }
+    //            if let c = response as? HTTPURLResponse, c.statusCode != 200 {
+    //                // check for http errors
+    //                print("statusCode should be 200, but is \(c.statusCode)")
+    //                print("response = \(response)")
+    //            }
+    //            do{
+    //                //here dataResponse received from a network request
+    //                let l = try JSONDecoder().decode([UtentiHystory].self, from: data!)
+    //                completionHandler(l)
+    //                //let jsonResponse = try JSONSerialization.jsonObject(with:
+    //                //dataResponse, options: [])
+    //                //print("xx")
+    //                //                for x in land{
+    //                //                    self.utenti.append(Utente(timestamp: x.timestamp , type: x.type, nPeople: x.value.nPeople))
+    //                //                    print("eee")
+    //                //                }
+    //            } catch let parsingError {
+    //                print("Error", parsingError)
+    //            }
+    //        }.resume()
+    //    }
 }
