@@ -57,7 +57,7 @@ class ViewController: UIViewController {
         request.setValue("application/json", forHTTPHeaderField: "Accept")
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         
-        let newTodoItem = LandingRequest(seconds: self.seconds, type: "Mask")
+        let newTodoItem = LandingRequest(seconds: Int(self.seconds), type: "Mask")
         let jsonData = try! JSONEncoder().encode(newTodoItem)
         
         request.httpBody = jsonData

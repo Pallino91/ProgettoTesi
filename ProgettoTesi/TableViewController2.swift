@@ -15,8 +15,7 @@ class TableViewController2: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.activityIndicator.frame.size.width = 100
-        self.activityIndicator.frame.size.height = 100
+        self.activityIndicator.transform = CGAffineTransform.init(scaleX: 3.5, y: 3.5)
         self.activityIndicator.color = UIColor.red
         self.activityIndicator.center = self.view.center
         self.activityIndicator.hidesWhenStopped = true
@@ -41,12 +40,13 @@ class TableViewController2: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cella", for: indexPath) as! TableViewCell
         cell.avvenimentoText.text = String(utenti[indexPath.row].nPeople) + "People Without Mask"
-        let date = NSDate(timeIntervalSince1970: TimeInterval(utenti[indexPath.row].timestamp))
+        let date = Date(timeIntervalSince1970: TimeInterval(utenti[indexPath.row].timestamp))
         let dateFormatter = DateFormatter()
-        dateFormatter.timeZone = TimeZone(abbreviation: "GMT") //Set timezone that you want
+        dateFormatter.timeZone = TimeZone(abbreviation: "GMT")
         dateFormatter.locale = NSLocale.current
-        dateFormatter.dateFormat = "MM-dd-y HH:mm:ss"
-        cell.data.text = dateFormatter.string(from: date as Date)
+        dateFormatter.dateFormat = "MM-dd-yyyy HH:mm:ss"
+        print(utenti[indexPath.row].timestamp)
+        cell.data.text = dateFormatter.string(from: date)
         cell.img.image = utenti[indexPath.row].imgHystory
         return cell
     }
@@ -190,8 +190,8 @@ class TableViewController2: UITableViewController {
                     }
                 }
                 DispatchQueue.main.async {
-                    self.activityIndicator.stopAnimating()
                     self.tableView.reloadData()
+                    self.activityIndicator.stopAnimating()
                 }
             } catch let parsingError {
                 print("Error", parsingError)

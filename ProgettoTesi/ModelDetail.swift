@@ -14,7 +14,7 @@ struct Detail: Codable {
     var location: String?
     var media: String?
     var size: Int?
-    var timestamp: Double?
+    var timestamp: Int?
     var type: String?
     var url: String?
 }

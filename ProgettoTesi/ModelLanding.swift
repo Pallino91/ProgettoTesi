@@ -14,6 +14,6 @@ struct LandingResponse : Codable {
     var result : Bool
 }
 struct LandingRequest: Codable {
-    var seconds: Double?
+    var seconds: Int?
     var type: String?
 }
