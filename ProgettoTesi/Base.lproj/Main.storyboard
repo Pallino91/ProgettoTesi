@@ -21,7 +21,7 @@
                                 <color key="textColor" red="0.92143100499999997" green="0.92145264149999995" blue="0.92144101860000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Face Mask Detection" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Uni-a9-22L">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Uni-a9-22L">
                                 <rect key="frame" x="28" y="147" width="359" height="40"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="33"/>
                                 <color key="textColor" red="0.92143100499999997" green="0.92145264149999995" blue="0.92144101860000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -41,7 +41,8 @@
                                 </constraints>
                                 <state key="normal" title="Button" image="Bottoni1"/>
                                 <connections>
-                                    <segue destination="MBR-5T-zQp" kind="show" id="5N6-ju-llk"/>
+                                    <action selector="bottonHistory:" destination="knm-k9-rPQ" eventType="touchUpInside" id="YXf-4A-azN"/>
+                                    <segue destination="MBR-5T-zQp" kind="show" identifier="BottonHistory" id="5N6-ju-llk"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Q62-W7-wTb">
@@ -103,11 +104,13 @@
                     <connections>
                         <outlet property="imgInizio" destination="h4V-c4-sSS" id="8eN-JE-d4d"/>
                         <outlet property="labelTimerText" destination="ctP-ro-Nil" id="QpS-SB-hBQ"/>
+                        <outlet property="labelTypeRisk" destination="Uni-a9-22L" id="Vwl-9f-Hok"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <exit id="knm-k9-rPQ" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="1043.4782608695652" y="97.826086956521749"/>
+            <point key="canvasLocation" x="903" y="111"/>
         </scene>
         <!--Eventi-->
         <scene sceneID="Iyh-11-fOX">
@@ -157,7 +160,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="383" height="96"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Avvenimento" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KBy-0w-Yvd">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Avvenimento" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="KBy-0w-Yvd">
                                             <rect key="frame" x="101" y="0.0" width="293" height="45"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="22"/>
@@ -197,7 +200,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uH2-mp-ZdZ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1802.8985507246377" y="97.826086956521749"/>
+            <point key="canvasLocation" x="1814" y="111"/>
         </scene>
         <!--Eventi Dettaglio-->
         <scene sceneID="O4P-vN-9hl">
@@ -230,7 +233,7 @@
                                 <rect key="frame" x="163" y="221" width="88" height="65"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Avvenimento" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5b9-BI-eau">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Avvenimento" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumFontSize="11" translatesAutoresizingMaskIntoConstraints="NO" id="5b9-BI-eau">
                                 <rect key="frame" x="20" y="318" width="374" height="45"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="22"/>
@@ -294,7 +297,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8ET-jY-SHc" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2540.579710144928" y="97.826086956521749"/>
+            <point key="canvasLocation" x="2541" y="111"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="ZoS-55-itu">
@@ -312,14 +315,76 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </toolbar>
                     <connections>
-                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="5Nm-Mc-i0p"/>
+                        <segue destination="ZuG-iV-04Q" kind="relationship" relationship="rootViewController" id="ISF-EW-UB4"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yDT-VB-nIN" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="136.23188405797103" y="97.826086956521749"/>
+            <point key="canvasLocation" x="-603" y="111"/>
+        </scene>
+        <!--Scelta Rischio-->
+        <scene sceneID="OhI-wY-BUV">
+            <objects>
+                <viewController title="Scelta Rischio" id="ZuG-iV-04Q" customClass="ViewControllerChoise" customModule="ProgettoTesi" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="7Eq-3x-2ze">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0Hr-cN-cIk">
+                                <rect key="frame" x="143" y="356" width="128" height="51"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="32"/>
+                                <state key="normal" title="Corona"/>
+                                <connections>
+                                    <action selector="choiseCorona:" destination="d2f-ao-kMx" eventType="touchUpInside" id="kF4-0g-k8L"/>
+                                    <segue destination="BYZ-38-t0r" kind="show" identifier="BottonCorona" id="OOU-vj-Bs2"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aMf-M0-mjR">
+                                <rect key="frame" x="143" y="445" width="128" height="51"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="32"/>
+                                <state key="normal" title="Task"/>
+                                <connections>
+                                    <action selector="choiseTaskSafety:" destination="d2f-ao-kMx" eventType="touchUpInside" id="4Nx-To-W2J"/>
+                                    <segue destination="BYZ-38-t0r" kind="show" identifier="BottonTask" id="dxj-em-VtD"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zbF-NJ-Pwc">
+                                <rect key="frame" x="141" y="540" width="133" height="51"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="32"/>
+                                <state key="normal" title="Crowding"/>
+                                <connections>
+                                    <action selector="choiseCrowding:" destination="d2f-ao-kMx" eventType="touchUpInside" id="gJY-QM-MQX"/>
+                                    <segue destination="BYZ-38-t0r" kind="show" identifier="BottonCrowding" id="95m-U6-EDP"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="La7-UQ-VFQ">
+                                <rect key="frame" x="143" y="266" width="128" height="51"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="32"/>
+                                <state key="normal" title="Mask"/>
+                                <connections>
+                                    <action selector="choiseCorona:" destination="d2f-ao-kMx" eventType="touchUpInside" id="mXQ-iL-BR3"/>
+                                    <segue destination="BYZ-38-t0r" kind="show" identifier="BottonMask" id="hKI-aw-mfQ"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="0.39201733570000002" green="0.027422981270000001" blue="0.59224822219999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <viewLayoutGuide key="safeArea" id="rIi-0X-uAL"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="6Nv-q2-Hdg"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="F0O-e9-cBl" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="d2f-ao-kMx" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="244.92753623188409" y="110.86956521739131"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="hKI-aw-mfQ"/>
+    </inferredMetricsTieBreakers>
     <resources>
         <image name="Bottoni1" width="83" height="80"/>
         <image name="bell" catalog="system" width="128" height="124"/>

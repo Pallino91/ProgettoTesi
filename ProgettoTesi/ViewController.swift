@@ -10,8 +10,12 @@ import UIKit
 
 class ViewController: UIViewController {
     
+    @IBOutlet weak var labelTypeRisk: UILabel!
     @IBOutlet weak var labelTimerText: UILabel!
     @IBOutlet weak var imgInizio: UIImageView!
+    var choiseType : String = ""
+    var labelRiskReceived = ""
+    var resulLanding : LandingResponse?
     var seconds : Double = 0.0
     var timer = Timer()
     var f = 1
@@ -22,8 +26,17 @@ class ViewController: UIViewController {
         imgInizio.layer.cornerRadius = 90
         imgInizio.layer.borderWidth = 3
         imgInizio.layer.masksToBounds = true
+        self.labelTypeRisk.text = labelRiskReceived
+        print(labelTypeRisk.text!)
+        print(choiseType)
     }
     
+    
+    
+    
+    @IBAction func bottonHistory(_ sender: Any) {
+        self.performSegue(withIdentifier: "BottonHistory", sender: nil)
+    }
     
     @IBAction func timerBottonAction(_ sender: UIButton) {
         if(self.labelTimerText.text == "30"){
@@ -49,41 +62,24 @@ class ViewController: UIViewController {
     
     
     @objc func update(){
-        let url = URL(string: "https://td4.andromedaesp.it/api/demo/landing")
-        guard let requestUrl = url else { fatalError() }
-        
-        var request = URLRequest(url: requestUrl)
-        request.httpMethod = "POST"
-        request.setValue("application/json", forHTTPHeaderField: "Accept")
-        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        
-        let newTodoItem = LandingRequest(seconds: Int(self.seconds), type: "Mask")
-        let jsonData = try! JSONEncoder().encode(newTodoItem)
-        
-        request.httpBody = jsonData
-        
-        let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
-            
-            if let error = error {
-                print("Error took place \(error)")
-                return
+        let serviceLanding = ServiceLanding(type: self.choiseType)
+        serviceLanding.callAPI()
+        serviceLanding.completionHandler{ [weak self] (danger, status, message) in
+            if status{
+                guard let self = self else {return}
+                guard let tmpDanger = danger else{return}
+                self.status = tmpDanger.result
+                self.f += 1
+                print("\(self.status) \(self.f)" )
+            }else{
+                print(message)
             }
-            guard let data = data else {return}
-            
-            do{
-                let land = try JSONDecoder().decode(LandingResponse.self, from: data)
-                DispatchQueue.main.async{
-                    self.status = land.result
-                    self.f+=1
-                    print("\(self.status) \(self.f)")
-                }
-            }catch let jsonErr{
-                print(jsonErr)
-            }
-            
-            
         }
-        task.resume()
+    }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard segue.identifier != nil else{return}
+        if(segue.identifier == "BottonHistory"){
+            (segue.destination as! TableViewController2).type = self.choiseType
+        }
     }
 }
-

@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-struct Detail: Codable {
+struct DetailResponse: Codable {
     var description: String?
     var location: String?
     var media: String?
@@ -17,4 +17,9 @@ struct Detail: Codable {
     var timestamp: Int?
     var type: String?
     var url: String?
+}
+
+struct DetailRequest: Codable {
+    var timestamp: Int
+    var type: String
 }

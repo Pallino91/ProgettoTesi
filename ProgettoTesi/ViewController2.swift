@@ -34,7 +34,8 @@ class ViewController2: UIViewController {
         view.addSubview(self.activityIndicator)
         
        // self.activityIndicator.startAnimating()
-        avvenimentoDettaglio.text = "\(utenti!.nPeople) People Without Mask"
+        let convertNumberPeople = convertPeople(people: utenti!.nPeople!)
+        avvenimentoDettaglio.text = convertNumberPeople + " People Without Mask"
         imgDettagli.image = utenti?.imgHystory
         locationDettaglio.text = utenti?.location
         let data = try? Data(contentsOf: URL(string: "https://td4.andromedaesp.it\(utenti!.urlMedia)")!)
@@ -53,6 +54,19 @@ class ViewController2: UIViewController {
         // Do any additional setup after loading the view.
     }
     
+    
+    func convertPeople(people: Int) -> String{
+        switch people {
+        case 1:
+            return "One"
+        case 2:
+            return "Two"
+        case 3...10:
+            return "Three or more"
+        default:
+            return ""
+        }
+    }
     
     /*
      // MARK: - Navigation

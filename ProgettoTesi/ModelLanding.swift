@@ -17,3 +17,4 @@ struct LandingRequest: Codable {
     var seconds: Int?
     var type: String?
 }
+
